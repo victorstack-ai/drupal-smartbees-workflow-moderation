@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_moderation
+id: smartbees_content
+label: 'Smartbees Content Workflow'
+type: content_moderation
+type_settings:
+  states:
+    draft:
+      label: Draft
+      weight: -10
+      published: false
+      default_revision: false
+    review:
+      label: 'In Review'
+      weight: -5
+      published: false
+      default_revision: false
+    published:
+      label: Published
+      weight: 0
+      published: true
+      default_revision: true
+  transitions:
+    create_draft:
+      label: 'Create Draft'
+      from:
+        - draft
+        - published
+      to: draft
+      weight: 0
+    submit_for_review:
+      label: 'Submit for review'
+      from:
+        - draft
+      to: review
+      weight: 1
+    request_changes:
+      label: 'Request changes'
+      from:
+        - review
+      to: draft
+      weight: 2
+    publish:
+      label: Publish
+      from:
+        - review
+      to: published
+      weight: 3
+  entity_types: {  }
+  default_moderation_state: draft

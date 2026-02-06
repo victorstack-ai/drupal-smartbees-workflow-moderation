@@ -1,0 +1,8 @@
+name: Smartbees Workflow Moderation
+type: module
+description: Provides a Smartbees content moderation workflow configuration.
+core_version_requirement: ^10 || ^11
+package: Smartbees
+dependencies:
+  - content_moderation
+  - workflows
